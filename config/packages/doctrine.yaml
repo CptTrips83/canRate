@@ -5,7 +5,7 @@ doctrine:
         user: '%env(MYSQL_USER)%'
         password: '%env(MYSQL_PASSWORD)%'
         driver: pdo_mysql
-        url: 'mysql://%env(DATABASE_USER)%:%env(DATABASE_PASSWORD)%@%env(DATABASE_HOST)%:%env(DATABASE_PORT)%/%env(DATABASE_DB)%?serverVersion=10.4.28-MariaDB&charset=utf8mb4'
+        url: 'mysql://%env(MYSQL_USER)%:%env(MYSQL_PASSWORD)%@%env(MYSQL_HOST)%:%env(MYSQL_PORT)%/%env(MYSQL_DATABASE)%?serverVersion=10.4.28-MariaDB&charset=utf8mb4'
 
         profiling_collect_backtrace: '%kernel.debug%'
         use_savepoints: true
