@@ -33,8 +33,16 @@ when@test:
             # "TEST_TOKEN" is typically set by ParaTest
             url: '%env(resolve:DATABASE_URL)%'
 
+
 when@prod:
     doctrine:
+        dbal:
+            dbname: '%env(MYSQL_DATABASE)%'
+            host: '%env(MYSQL_HOST)%'
+            user: '%env(MYSQL_USER)%'
+            password: '%env(MYSQL_PASSWORD)%'
+            port: '%env(MYSQL_PORT)%'
+            driver: pdo_mysql
         orm:
             auto_generate_proxy_classes: false
             proxy_dir: '%kernel.build_dir%/doctrine/orm/Proxies'
