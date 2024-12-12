@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Entity\CannabisProduct;
 use App\Entity\CannabisProductRating;
+use App\Form\CannabisProductRatingType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
@@ -34,6 +36,34 @@ class CannabisProductRatingController extends AbstractController
         ]);
     }
 
+    #[Route('/create/{productId}', name: '.create')]
+    public function create(
+        int $productId,
+        Request $request,
+    ): Response {
+        $product = $this->entityManager->getRepository(CannabisProduct::class)->find($productId);
+
+        $productRating = new CannabisProductRating();
+        $product->addRating($productRating);
+
+        $form = $this->createForm(CannabisProductRatingType::class, $productRating);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $productRating = $form->getData();
+
+
+            $this->entityManager->persist($productRating);
+            $this->entityManager->flush();
+
+            return $this->redirectToRoute('app_cannabis_product_rating.index', ['productId' => $product->getId()]);
+        }
+        return $this->render('cannabis_product_rating/create.html.twig', [
+            'form' => $form->createView(),
+            'product' => $product,
+        ]);
+    }
 
     private function processRating(array $ratings) : array
     {
