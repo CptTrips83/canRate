@@ -1,9 +1,9 @@
 doctrine:
     dbal:
-        host: '%env(DATABASE_HOST)%'
-        port: '%env(DATABASE_PORT)%'
-        user: '%env(DATABASE_USER)%'
-        password: '%env(DATABASE_PASSWORD)%'
+        dbname: '%env(MYSQL_DATABASE)%'
+        host: '%env(MYSQL_HOST)%'
+        user: '%env(MYSQL_USER)%'
+        password: '%env(MYSQL_PASSWORD)%'
         driver: pdo_mysql
         url: 'mysql://%env(DATABASE_USER)%:%env(DATABASE_PASSWORD)%@%env(DATABASE_HOST)%:%env(DATABASE_PORT)%/%env(DATABASE_DB)%?serverVersion=10.4.28-MariaDB&charset=utf8mb4'
 
