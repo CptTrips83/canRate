@@ -1,11 +1,6 @@
 doctrine:
     dbal:
-        dbname: '%env(MYSQL_DATABASE)%'
-        host: '%env(MYSQL_HOST)%'
-        user: '%env(MYSQL_USER)%'
-        password: '%env(MYSQL_PASSWORD)%'
-        driver: pdo_mysql
-        url: 'mysql://%env(MYSQL_USER)%:%env(MYSQL_PASSWORD)%@%env(MYSQL_HOST)%:%env(MYSQL_PORT)%/%env(MYSQL_DATABASE)%?serverVersion=10.4.28-MariaDB&charset=utf8mb4'
+
 
         profiling_collect_backtrace: '%kernel.debug%'
         use_savepoints: true
@@ -27,6 +22,16 @@ doctrine:
                 alias: App
         controller_resolver:
             auto_mapping: false
+
+when@prod:
+    doctrine:
+        dbal:
+            dbname: '%env(MYSQL_DATABASE)%'
+            host: '%env(MYSQL_HOST)%'
+            user: '%env(MYSQL_USER)%'
+            password: '%env(MYSQL_PASSWORD)%'
+            driver: pdo_mysql
+            url: 'mysql://%env(MYSQL_USER)%:%env(MYSQL_PASSWORD)%@%env(MYSQL_HOST)%:%env(MYSQL_PORT)%/%env(MYSQL_DATABASE)%?serverVersion=10.4.28-MariaDB&charset=utf8mb4'
 
 when@test:
     doctrine:
