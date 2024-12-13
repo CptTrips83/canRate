@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\CannabisProducer;
 use App\Entity\CannabisProduct;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -42,6 +43,7 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+        yield MenuItem::linkToCrud('Cannabis Producer', 'fas fa-list', CannabisProducer::class);
         yield MenuItem::linkToCrud('Cannabis Products', 'fas fa-list', CannabisProduct::class);
         yield MenuItem::section('Links');
         yield MenuItem::linkToRoute('Back to the website', 'fas fa-home', 'app_cannabis_product.index');

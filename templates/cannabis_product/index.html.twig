@@ -14,7 +14,12 @@
                 <div class="card-body p-4">
                     <div class="text-center">
                         <!-- Product name-->
-                        <h5 class="fw-bolder">{{ product.name }}</h5>
+                        <h5 class="fw-bolder">
+                            {% if product.producer is defined and product.producer is not null %}
+                                <div class="producer-name text-nowrap">{{ product.producer.name }}</div>
+                            {% endif %}
+                            <span class="product-name">{{ product.name }}</span>
+                        </h5>
                         <!-- Product reviews-->
                         <div>
                             <div class="text-nowrap">THC Content {{ product.thcContent }} %</div>

@@ -16,20 +16,29 @@ class CannabisProductRepository extends ServiceEntityRepository
         parent::__construct($registry, CannabisProduct::class);
     }
 
-    //    /**
-    //     * @return CannabisProduct[] Returns an array of CannabisProduct objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('c')
-    //            ->andWhere('c.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('c.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+        /**
+         * @return CannabisProduct[] Returns an array of CannabisProduct objects
+         */
+    public function findByProducer(array $producer): array
+    {
+        $builder = $this->createQueryBuilder('c');
+
+        foreach ($producer as $key => $value) {
+            $varName = 'val'.$key;
+            $builder
+                ->orWhere('c.producer = :'.$varName)
+                ->setParameter($varName, $value);
+        }
+
+        $builder
+            ->orderBy('c.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+
+        return $builder->getQuery()->getResult();
+    }
 
     //    public function findOneBySomeField($value): ?CannabisProduct
     //    {

@@ -40,6 +40,7 @@ class CannabisProductController extends AbstractController
         foreach ($products as $key => $product) {
             $array[$key]['id'] = $product->getId();
             $array[$key]['name'] = $product->getName();
+            $array[$key]['producer'] = $product->getProducer();
             $array[$key]['imageUrl'] = $product->getImageUrl();
             $array[$key]['thcContent'] = $product->getThcContent();
             $array[$key]['cbdContent'] = $product->getCbdContent();
