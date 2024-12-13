@@ -35,4 +35,8 @@ class CannabisProductCrudController extends AbstractCrudController
         ];
     }
 
+    public function createEntity(string $entityFqcn): CannabisProduct
+    {
+        return new CannabisProduct();
+    }
 }
