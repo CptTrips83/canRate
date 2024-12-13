@@ -41,10 +41,9 @@ class CannabisProductRatingController extends AbstractController
         int $productId,
         Request $request,
     ): Response {
-        $product = $this->entityManager->getRepository(CannabisProduct::class)->find($productId);
+
 
         $productRating = new CannabisProductRating();
-        $product->addRating($productRating);
 
         $form = $this->createForm(CannabisProductRatingType::class, $productRating);
 
@@ -53,11 +52,13 @@ class CannabisProductRatingController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $productRating = $form->getData();
 
+            $product = $this->entityManager->getRepository(CannabisProduct::class)->find($productId);
+            $product->addRating($productRating);
 
             $this->entityManager->persist($productRating);
             $this->entityManager->flush();
 
-            return $this->redirectToRoute('app_cannabis_product_rating.index', ['productId' => $product->getId()]);
+            return $this->redirectToRoute('app_cannabis_product_rating.index', ['productId' => $productId]);
         }
         return $this->render('cannabis_product_rating/create.html.twig', [
             'form' => $form->createView(),
