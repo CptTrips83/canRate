@@ -17,10 +17,10 @@
                         <h5 class="fw-bolder">{{ product.name }}</h5>
                         <!-- Product reviews-->
                         <div>
-                            <div>THC Content {{ product.thcContent }} %</div>
-                            <div>CBD Content {{ product.cbdContent }} %</div>
+                            <div class="text-nowrap">THC Content {{ product.thcContent }} %</div>
+                            <div class="text-nowrap">CBD Content {{ product.cbdContent }} %</div>
                         </div>
-                        <div class="d-flex justify-content-center small text-warning mb-2">
+                        <div class="text-nowrap justify-content-center small text-warning mb-2">
                             {% for i in range(1, 5) %}
                                 {% if i <= product.avgRating %}
                                     <div class="bi-star-fill"></div>
