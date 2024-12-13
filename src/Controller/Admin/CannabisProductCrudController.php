@@ -28,7 +28,7 @@ class CannabisProductCrudController extends AbstractCrudController
             TextField::new('cbdContent'),
             ImageField::new('imageUrl')
                 ->setBasePath('/uploads/images')
-                ->setUploadDir('/public/assets/images')
+                ->setUploadDir('/public/images')
                 ->setFileConstraints(new Image(maxSize: '900k'))
                 ->setUploadedFileNamePattern('[slug]-[contenthash].[extension]')
                 ->setRequired(false)
