@@ -42,6 +42,7 @@ class CannabisProductRatingController extends AbstractController
         Request $request,
     ): Response {
 
+        $product = $this->entityManager->getRepository(CannabisProduct::class)->find($productId);
 
         $productRating = new CannabisProductRating();
 
@@ -52,7 +53,6 @@ class CannabisProductRatingController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $productRating = $form->getData();
 
-            $product = $this->entityManager->getRepository(CannabisProduct::class)->find($productId);
             $product->addRating($productRating);
 
             $this->entityManager->persist($productRating);
