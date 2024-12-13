@@ -21,6 +21,7 @@ class CannabisProductCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
+            IdField::new('id')->onlyOnIndex(),
             TextField::new('name'),
             TextField::new('type'),
             TextField::new('thcContent'),
@@ -31,7 +32,8 @@ class CannabisProductCrudController extends AbstractCrudController
                 ->setFileConstraints(new Image(maxSize: '900k'))
                 ->setUploadedFileNamePattern('[slug]-[contenthash].[extension]')
                 ->setRequired(false)
-                ->setLabel('Image (Size 268x175 Max. 900kb)'),
+                ->setLabel('Image (Size 268x175 Max. 900kb)')
+                ->onlyOnForms(),
         ];
     }
 
