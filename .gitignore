@@ -10,6 +10,7 @@
 /assets/images/
 /public/assets/images/
 /data/
+/public/assets/
 /.idea/
 ###< symfony/framework-bundle ###
 
