@@ -1,10 +1,6 @@
 doctrine:
     dbal:
-        # url: '%env(resolve:DATABASE_URL)%'
 
-        # IMPORTANT: You MUST configure your server version,
-        # either here or in the DATABASE_URL env var (see .env file)
-        #server_version: '16'
 
         profiling_collect_backtrace: '%kernel.debug%'
         use_savepoints: true
@@ -27,13 +23,6 @@ doctrine:
         controller_resolver:
             auto_mapping: false
 
-when@test:
-    doctrine:
-        dbal:
-            # "TEST_TOKEN" is typically set by ParaTest
-            url: '%env(resolve:DATABASE_URL)%'
-
-
 when@prod:
     doctrine:
         dbal:
@@ -41,17 +30,14 @@ when@prod:
             host: '%env(MYSQL_HOST)%'
             user: '%env(MYSQL_USER)%'
             password: '%env(MYSQL_PASSWORD)%'
-            port: '%env(MYSQL_PORT)%'
             driver: pdo_mysql
-        orm:
-            auto_generate_proxy_classes: false
-            proxy_dir: '%kernel.build_dir%/doctrine/orm/Proxies'
-            query_cache_driver:
-                type: pool
-                pool: doctrine.system_cache_pool
-            result_cache_driver:
-                type: pool
-                pool: doctrine.result_cache_pool
+            url: 'mysql://%env(MYSQL_USER)%:%env(MYSQL_PASSWORD)%@%env(MYSQL_HOST)%:%env(MYSQL_PORT)%/%env(MYSQL_DATABASE)%?serverVersion=10.4.28-MariaDB&charset=utf8mb4'
+
+when@test:
+    doctrine:
+        dbal:
+            # "TEST_TOKEN" is typically set by ParaTest
+            url: '%env(resolve:DATABASE_URL)%'
 
 when@dev:
     doctrine:

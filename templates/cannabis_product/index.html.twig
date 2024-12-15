@@ -1,31 +1,77 @@
 {% extends 'base.html.twig' %}
 
+{% block filter %}
+    <div class="container px-4 px-lg-5 mt-5">
+        <button class="btn btn-primary" data-controller="filterProducer" data-action="click->filterProducer#toggleFilterVisibility">Filter</button>
+
+        <twig:Turbo:Frame id="filter-producer-frame" class="d-none">
+            <div class="card">
+                <div class="card-header">
+                    Filter by Producer
+                </div>
+                <div class="card-body container-fluid overflow-auto">
+                    <div class="d-flex flex-wrap align-content-start" style="height:250px">
+                        {% for producer in producers %}
+                            <div class="p-4" style="width: 200px">
+
+                                <input
+                                    data-controller="filterProducer"
+                                    data-action="change->filterProducer#reloadProducts"
+                                    class="filter-checkbox filter-checkbox-producer"
+                                    type="checkbox"
+                                    id="{{ producer.id }}"
+                                />
+                                <label for="{{ producer.id }}">{{ producer.name }}</label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </twig:Turbo:Frame>
+    </div>
+{% endblock %}
+
 {% block products %}
     {% for product in products %}
         <div class="col mb-5">
             <div class="card h-100">
                 <!-- Sale badge-->
-                <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Best</div>
+                {% if product.avgRating >= 4 %}
+                    <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Best</div>
+                {% endif %}
                 <!-- Product image-->
-                <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+                <img class="card-img-top" style="height: 175px; " src="{{ asset('images/' ~ product.imageUrl) }}" alt="..." />
                 <!-- Product details-->
                 <div class="card-body p-4">
                     <div class="text-center">
                         <!-- Product name-->
-                        <h5 class="fw-bolder">{{ product.name }}</h5>
+                        <h5 class="fw-bolder">
+                            {% if product.producer is defined and product.producer is not null %}
+                                <div class="producer-name text-nowrap">{{ product.producer.name }}</div>
+                            {% endif %}
+                            <span class="product-name">{{ product.name }}</span>
+                        </h5>
                         <!-- Product reviews-->
+                        <div>
+                            <div class="text-nowrap">THC Content {{ product.thcContent }} %</div>
+                            <div class="text-nowrap">CBD Content {{ product.cbdContent }} %</div>
+                        </div>
                         <div class="d-flex justify-content-center small text-warning mb-2">
-                            <div class="bi-star-fill"></div>
-                            <div class="bi-star-fill"></div>
-                            <div class="bi-star-fill"></div>
-                            <div class="bi-star-fill"></div>
-                            <div class="bi-star-fill"></div>
+                            {% for i in range(1, 5) %}
+                                {% if i <= product.avgRating %}
+                                    <div class="bi-star-fill"></div>
+                                {% else %}
+                                    <div class="bi-star"></div>
+                                {% endif %}
+                            {% endfor %}
+                            <span class="text-black">({{ product.countRating }})</span>
                         </div>
                     </div>
                 </div>
                 <!-- Product actions-->
                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                     <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{ path('app_cannabis_product_rating.index', { 'productId' : product.id }) }}">See Ratings</a></div>
+                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{ path('app_cannabis_product_rating.create', { 'productId' : product.id }) }}">Create Rating</a></div>
                 </div>
             </div>
         </div>

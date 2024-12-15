@@ -37,6 +37,9 @@ class CannabisProduct
     #[ORM\OneToMany(targetEntity: CannabisProductRating::class, mappedBy: 'product', orphanRemoval: true)]
     private Collection $ratings;
 
+    #[ORM\ManyToOne(inversedBy: 'products')]
+    private ?CannabisProducer $producer = null;
+
     public function __construct()
     {
         $this->ratings = new ArrayCollection();
@@ -133,6 +136,18 @@ class CannabisProduct
                 $rating->setProduct(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getProducer(): ?CannabisProducer
+    {
+        return $this->producer;
+    }
+
+    public function setProducer(?CannabisProducer $producer): static
+    {
+        $this->producer = $producer;
 
         return $this;
     }
