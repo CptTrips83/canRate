@@ -1,5 +1,36 @@
 {% extends 'base.html.twig' %}
 
+{% block filter %}
+    <div class="container px-4 px-lg-5 mt-5">
+        <button class="btn btn-primary" data-controller="filterProducer" data-action="click->filterProducer#toggleFilterVisibility">Filter</button>
+
+        <twig:Turbo:Frame id="filter-producer-frame" class="d-none">
+            <div class="card">
+                <div class="card-header">
+                    Filter by Producer
+                </div>
+                <div class="card-body container-fluid overflow-auto">
+                    <div class="d-flex flex-wrap align-content-start" style="height:250px">
+                        {% for producer in producers %}
+                            <div class="p-4" style="width: 200px">
+
+                                <input
+                                    data-controller="filterProducer"
+                                    data-action="change->filterProducer#reloadProducts"
+                                    class="filter-checkbox filter-checkbox-producer"
+                                    type="checkbox"
+                                    id="{{ producer.id }}"
+                                />
+                                <label for="{{ producer.id }}">{{ producer.name }}</label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </twig:Turbo:Frame>
+    </div>
+{% endblock %}
+
 {% block products %}
     {% for product in products %}
         <div class="col mb-5">
@@ -14,7 +45,12 @@
                 <div class="card-body p-4">
                     <div class="text-center">
                         <!-- Product name-->
-                        <h5 class="fw-bolder">{{ product.name }}</h5>
+                        <h5 class="fw-bolder">
+                            {% if product.producer is defined and product.producer is not null %}
+                                <div class="producer-name text-nowrap">{{ product.producer.name }}</div>
+                            {% endif %}
+                            <span class="product-name">{{ product.name }}</span>
+                        </h5>
                         <!-- Product reviews-->
                         <div>
                             <div class="text-nowrap">THC Content {{ product.thcContent }} %</div>
