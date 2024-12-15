@@ -19,15 +19,19 @@ class CannabisProductRepository extends ServiceEntityRepository
         /**
          * @return CannabisProduct[] Returns an array of CannabisProduct objects
          */
-    public function findByProducer(array $producer): array
+    public function findByProducers(array $producers): array
     {
+        if(empty($producers)){
+            return $this->findAll();
+        }
+
         $builder = $this->createQueryBuilder('c');
 
-        foreach ($producer as $key => $value) {
+        foreach ($producers as $key => $producer) {
             $varName = 'val'.$key;
             $builder
                 ->orWhere('c.producer = :'.$varName)
-                ->setParameter($varName, $value);
+                ->setParameter($varName, $producer);
         }
 
         $builder

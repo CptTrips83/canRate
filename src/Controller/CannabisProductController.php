@@ -2,10 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\CannabisProducer;
 use App\Entity\CannabisProduct;
 use App\Entity\CannabisProductRating;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
@@ -18,14 +20,20 @@ class CannabisProductController extends AbstractController
     }
 
     #[Route('/', name: '.index', methods: ['GET'])]
-    public function index(): Response
-    {
-        $products = $this->entityManager->getRepository(CannabisProduct::class)->findAll();
+    public function index(
+        Request $request,
+    ): Response {
+        $chosenProducers = $request->query->all('producer');
+
+        $producers = $this->entityManager->getRepository(CannabisProducer::class)->findAll();
+
+        $products = $this->entityManager->getRepository(CannabisProduct::class)->findByProducers($chosenProducers);
 
         $processedProducts = $this->processRating($products);
 
         return $this->render('cannabis_product/index.html.twig', [
             'products' => $processedProducts,
+            'producers' => $producers,
         ]);
     }
 
