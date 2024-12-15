@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Serializer\Encoder\JsonDecode;
 
 #[Route('/cannabis/product', name: 'app_cannabis_product')]
 class CannabisProductController extends AbstractController
@@ -23,11 +24,12 @@ class CannabisProductController extends AbstractController
     public function index(
         Request $request,
     ): Response {
-        $chosenProducers = $request->query->all('producer');
+        $filterProducers = json_decode($request->query->get('filterProducer'));
+        $filterProducers = $filterProducers == null ? [] : $filterProducers;
 
         $producers = $this->entityManager->getRepository(CannabisProducer::class)->findAll();
 
-        $products = $this->entityManager->getRepository(CannabisProduct::class)->findByProducers($chosenProducers);
+        $products = $this->entityManager->getRepository(CannabisProduct::class)->findByProducers($filterProducers);
 
         $processedProducts = $this->processRating($products);
 

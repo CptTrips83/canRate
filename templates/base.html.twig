@@ -57,18 +57,8 @@
             </div>
         </header>
         <!-- Section-->
-
-        <select
-                class="form-select"
-                aria-label="Default select example"
-                data-controller="filterProducer"
-                data-action="filterProducer#change"
-        >
-            <option selected>Please Choose</option>
-            {% for producer in producers %}
-                <option value="{{ producer.id }}">{{ producer.name }}</option>
-            {% endfor %}
-        </select>
+        {% block filter %}
+        {% endblock %}
         <turbo-frame id="products-frame">
             <section class="py-5">
                 <div class="container px-4 px-lg-5 mt-5">
