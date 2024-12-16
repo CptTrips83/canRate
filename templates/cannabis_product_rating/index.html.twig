@@ -3,7 +3,11 @@
 {% block title %}Hello CannabisProductRatingController!{% endblock %}
 
 {% block Headline2 %}
-    User Ratings for {{ product.name }}
+    Bewertungen for
+    {% if product.producer is defined and product.producer is not null %}
+       {{ product.producer.name }}
+    {% endif %}
+    {{ product.name }}
 {% endblock %}
 
 {% block filter %}
@@ -19,7 +23,7 @@
 {% block products %}
     {% for rating in ratings %}
         <div class="col mb-5">
-            <div class="card h-100">
+            <div class="card h-100" style="max-width: 300px;">
                 <!-- Product details-->
                 <div class="card-body p-4">
                     <div class="text-center">
