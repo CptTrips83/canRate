@@ -7,7 +7,7 @@ export default class extends Controller {
     connect() {
         console.log('filterProduct_controller connected');
         filterCheckboxes = document.querySelectorAll('.filter-checkbox');
-        filterInputSearch = document.querySelectorAll('.filter-input-search');
+        filterInputSearch = document.getElementById('filter-input-search');
     }
 
     reloadProducts(event) {
@@ -35,7 +35,7 @@ export default class extends Controller {
     }
 
     extractFilterSearchValue() {
-        return filterInputSearch[0].value;
+        return filterInputSearch.value;
     }
 
     toggleFilterVisibility(event) {

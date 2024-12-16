@@ -35,7 +35,7 @@ export default class extends Controller {
     }
 
     extractFilterSearchValue() {
-        return filterInputSearch[0].value;
+        return filterInputSearch.value;
     }
 
     toggleFilterVisibility(event) {

@@ -6,6 +6,7 @@ use App\Entity\CannabisProducer;
 use App\Entity\CannabisProduct;
 use App\Entity\CannabisProductRating;
 use Doctrine\ORM\EntityManagerInterface;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,6 +18,7 @@ class CannabisProductController extends AbstractController
 {
     public function __construct(
         private EntityManagerInterface $entityManager,
+        private LoggerInterface $logger,
     ) {
     }
 
@@ -24,12 +26,16 @@ class CannabisProductController extends AbstractController
     public function index(
         Request $request,
     ): Response {
+        $filterSearch = $request->query->get('filterSearch');
+        $filterSearch = $filterSearch == null ? '' : $filterSearch;
+
         $filterProducers = json_decode($request->query->get('filterProducer'));
         $filterProducers = $filterProducers == null ? [] : $filterProducers;
 
         $producers = $this->entityManager->getRepository(CannabisProducer::class)->findAll();
 
-        $products = $this->entityManager->getRepository(CannabisProduct::class)->findByProducers($filterProducers);
+        $this->logger->info('CannabisProductRepository::findByFilter: filterSearch '.$filterSearch.' filterProducers '. count($filterProducers));
+        $products = $this->entityManager->getRepository(CannabisProduct::class)->findByFilter($filterSearch, $filterProducers);
 
         $processedProducts = $this->processRating($products);
 
