@@ -1,5 +1,6 @@
 [
     "\/assets\/bootstrap.js",
+    "bootstrap-icons\/font\/bootstrap-icons.min.css",
     "\/assets\/styles\/app.css",
     "@symfony\/stimulus-bundle",
     "@hotwired\/stimulus",

@@ -3,7 +3,7 @@
     "@symfony\/stimulus-bundle\/loader.js": "\/assets\/@symfony\/stimulus-bundle\/loader-hwmZoC6.js",
     "@symfony\/ux-turbo\/turbo_controller.js": "\/assets\/@symfony\/ux-turbo\/turbo_controller-zl4y2v3.js",
     "@symfony\/ux-turbo\/turbo_stream_controller.js": "\/assets\/@symfony\/ux-turbo\/turbo_stream_controller-UOrik8H.js",
-    "app.js": "\/assets\/app-l89dsVm.js",
+    "app.js": "\/assets\/app-YGaOnxB.js",
     "bootstrap.js": "\/assets\/bootstrap-xCO4u8H.js",
     "bundles\/easyadmin\/app.1ecd6d7a.js": "\/assets\/bundles\/easyadmin\/app.1ecd6d7a-6vXA5L_.js",
     "bundles\/easyadmin\/app.1ecd6d7a.js.LICENSE.txt": "\/assets\/bundles\/easyadmin\/app.1ecd6d7a.js.LICENSE-0fBCyWD.txt",
@@ -42,6 +42,9 @@
     "vendor\/@hotwired\/stimulus\/stimulus.index.js": "\/assets\/vendor\/@hotwired\/stimulus\/stimulus.index-tbHQDkJ.js",
     "vendor\/@hotwired\/turbo\/turbo.index.js": "\/assets\/vendor\/@hotwired\/turbo\/turbo.index-gQ9E7xo.js",
     "vendor\/@popperjs\/core\/core.index.js": "\/assets\/vendor\/@popperjs\/core\/core.index-zrW2wPn.js",
+    "vendor\/bootstrap-icons\/font\/bootstrap-icons.min.css": "\/assets\/vendor\/bootstrap-icons\/font\/bootstrap-icons.min-AW5ZrWg.css",
+    "vendor\/bootstrap-icons\/font\/fonts\/bootstrap-icons.woff": "\/assets\/vendor\/bootstrap-icons\/font\/fonts\/bootstrap-icons-0aH-QtJ.woff",
+    "vendor\/bootstrap-icons\/font\/fonts\/bootstrap-icons.woff2": "\/assets\/vendor\/bootstrap-icons\/font\/fonts\/bootstrap-icons-XwkzJPS.woff2",
     "vendor\/bootstrap\/bootstrap.index.js": "\/assets\/vendor\/bootstrap\/bootstrap.index-wEI8mfY.js",
     "vendor\/bootstrap\/dist\/css\/bootstrap.min.css": "\/assets\/vendor\/bootstrap\/dist\/css\/bootstrap.min-FxLwN4-.css"
 }

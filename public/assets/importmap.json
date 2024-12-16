@@ -1,6 +1,6 @@
 {
     "app": {
-        "path": "\/assets\/app-l89dsVm.js",
+        "path": "\/assets\/app-YGaOnxB.js",
         "type": "js"
     },
     "\/assets\/bootstrap.js": {
@@ -53,6 +53,10 @@
     },
     "bootstrap\/dist\/css\/bootstrap.min.css": {
         "path": "\/assets\/vendor\/bootstrap\/dist\/css\/bootstrap.min-FxLwN4-.css",
+        "type": "css"
+    },
+    "bootstrap-icons\/font\/bootstrap-icons.min.css": {
+        "path": "\/assets\/vendor\/bootstrap-icons\/font\/bootstrap-icons.min-AW5ZrWg.css",
         "type": "css"
     }
 }
