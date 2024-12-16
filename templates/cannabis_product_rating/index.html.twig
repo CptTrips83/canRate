@@ -6,6 +6,16 @@
     User Ratings for {{ product.name }}
 {% endblock %}
 
+{% block filter %}
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="">
+            <a href="{{ path('app_cannabis_product.index') }}" class="btn btn-outline-dark">
+                <i class="bi bi-arrow-left"></i> Zurück zu den Produkten
+            </a>
+        </div>
+    </div>
+{% endblock %}
+
 {% block products %}
     {% for rating in ratings %}
         <div class="col mb-5">
@@ -14,7 +24,7 @@
                 <div class="card-body p-4">
                     <div class="text-center">
                         <!-- Product name-->
-                        <h5 class="fw-bolder">Benutzer Bewertungen</h5>
+                        <h5 class="fw-bolder">Benutzer Bewertung</h5>
                         <!-- Product reviews-->
                         <div class="d-flex justify-content-center small text-warning mb-2">
                             <table class="table table-borderless">
