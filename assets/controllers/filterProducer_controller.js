@@ -10,6 +10,7 @@ export default class extends Controller {
 
     reloadProducts(event) {
         const frame = document.getElementById('products-frame');
+        const url = frame.getAttribute("datasrc");
 
         let filterValues = [];
 
@@ -22,7 +23,7 @@ export default class extends Controller {
             }
         }
 
-        frame.src = window.location + '?filterProducer=' + JSON.stringify(filterValues);
+        frame.src = url + '?filterProducer=' + JSON.stringify(filterValues);
     }
 
     toggleFilterVisibility(event) {
