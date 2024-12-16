@@ -71,11 +71,12 @@ class CannabisProductRatingController extends AbstractController
         $array = [];
 
         foreach ($ratings as $key => $rating) {
-            $array[$key]['quality'] = $rating->getQuality();
-            $array[$key]['effect'] = $rating->getEffect();
-            $array[$key]['safety'] = $rating->getSafety();
-            $array[$key]['reliability'] = $rating->getReliability();
-            $array[$key]['pricePerformance'] = $rating->getPricePerformance();
+            $array[$key]['Qualität'] = $rating->getQuality();
+            $array[$key]['Effekt'] = $rating->getEffect();
+            $array[$key]['Sicherheit'] = $rating->getSafety();
+            $array[$key]['Zuverlässigkeit'] = $rating->getReliability();
+            $array[$key]['Preis Leistung'] = $rating->getPricePerformance();
+            $array[$key]['Vertrauen'] = $rating->getTrust();
         }
 
         return $array;

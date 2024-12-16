@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -27,15 +27,15 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ path('app_cannabis_product.index') }}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ path('app_cannabis_product.index') }}">Produkte</a></li>
                         <li class="nav-item me-auto dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Profile</a>
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Benutzerprofil</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 {% if is_granted("ROLE_USER") %}
-                                    <li><a class="dropdown-item" href="{{ path('app_logout') }}">Logout</a></li>
+                                    <li><a class="dropdown-item" href="{{ path('app_logout') }}">Ausloggen</a></li>
                                 {% else  %}
-                                    <li><a class="dropdown-item" href="{{ path('app_login') }}">Login</a></li>
-                                    <li><a class="dropdown-item" href="{{ path('app_register') }}">Register</a></li>
+                                    <li><a class="dropdown-item" href="{{ path('app_login') }}">Einloggen</a></li>
+                                    <li><a class="dropdown-item" href="{{ path('app_register') }}">Registrieren</a></li>
                                 {% endif %}
                                 {% if is_granted("ROLE_MOD") %}
                                     <li><hr class="dropdown-divider" /></li>
@@ -80,9 +80,6 @@
                 </p>
             </div>
         </footer>
-
-
-
         {% block body %}
         {% endblock %}
     </body>

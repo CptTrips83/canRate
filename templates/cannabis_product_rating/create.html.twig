@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CannabisProductRatingController!{% endblock %}
 
 {% block Headline2 %}
-    User Ratings for {{ product.name }}
+    Benutzerbewertung für {% if product.producer is defined and product.producer is not null %} {{ product.producer.name }} {% endif %}
+    {{ product.name }}
 {% endblock %}
 
 {% block products %}

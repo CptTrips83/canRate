@@ -7,7 +7,7 @@
         <twig:Turbo:Frame id="filter-producer-frame" class="d-none">
             <div class="card">
                 <div class="card-header">
-                    Filter by Producer
+                    Filter Hersteller
                 </div>
                 <div class="card-body container-fluid overflow-auto">
                     <div class="d-flex flex-wrap align-content-start" style="height:250px">
@@ -53,8 +53,8 @@
                         </h5>
                         <!-- Product reviews-->
                         <div>
-                            <div class="text-nowrap">THC Content {{ product.thcContent }} %</div>
-                            <div class="text-nowrap">CBD Content {{ product.cbdContent }} %</div>
+                            <div class="text-nowrap">THC Stärke {{ product.thcContent }} %</div>
+                            <div class="text-nowrap">CBD Stärke {{ product.cbdContent }} %</div>
                         </div>
                         <div class="d-flex justify-content-center small text-warning mb-2">
                             {% for i in range(1, 5) %}
@@ -70,8 +70,8 @@
                 </div>
                 <!-- Product actions-->
                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{ path('app_cannabis_product_rating.index', { 'productId' : product.id }) }}">See Ratings</a></div>
-                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{ path('app_cannabis_product_rating.create', { 'productId' : product.id }) }}">Create Rating</a></div>
+                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{ path('app_cannabis_product_rating.index', { 'productId' : product.id }) }}">Bewertungen anzeigen</a></div>
+                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{ path('app_cannabis_product_rating.create', { 'productId' : product.id }) }}">Bewertung erstellen</a></div>
                 </div>
             </div>
         </div>
