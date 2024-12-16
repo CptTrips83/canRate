@@ -10,15 +10,14 @@
                 </button>
             </span>
             <span class="col col-11">
-
-                    <input
-                        id="filter-input-search"
-                        type="text"
-                        class="form-control filter-input filter-input-search"
-                        placeholder="Suche"
-                        data-controller="filterProducer"
-                        data-action="change->filterProducer#reloadProducts"
-                    />
+                <input
+                    id="filter-input-search"
+                    type="text"
+                    class="form-control filter-input filter-input-search"
+                    placeholder="Suche"
+                    data-controller="filterProducer"
+                    data-action="input->filterProducer#reloadProducts"
+                />
                 <label for="filter-input-search">
                 </label>
             </span>

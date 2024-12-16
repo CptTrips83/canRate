@@ -5,17 +5,13 @@ namespace App\Repository;
 use App\Entity\CannabisProduct;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Psr\Log\LoggerInterface;
 
 /**
  * @extends ServiceEntityRepository<CannabisProduct>
  */
 class CannabisProductRepository extends ServiceEntityRepository
 {
-    public function __construct(
-        ManagerRegistry $registry,
-        private LoggerInterface $logger
-    )
+    public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, CannabisProduct::class);
     }
@@ -31,12 +27,13 @@ class CannabisProductRepository extends ServiceEntityRepository
             return $this->findAll();
         }
 
-
         $builder = $this->createQueryBuilder('c');
 
         if(!empty($search)) {
             $builder
-                ->andWhere('c.name LIKE :search')
+                ->leftJoin('c.producer', 'p')
+                ->andWhere('p.name LIKE :search')
+                ->orWhere('c.name LIKE :search')
                 ->setParameter('search', '%' . $search . '%');
         }
 
@@ -53,10 +50,6 @@ class CannabisProductRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult()
         ;
-
-        $query = $builder->getQuery();
-
-        $this->logger->info('CannabisProductRepository::findByFilter: Query: '.$query->getSQL());
 
         return $builder->getQuery()->getResult();
     }
