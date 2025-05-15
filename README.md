@@ -1,7 +1,7 @@
 # canRate
 
 ## Projektbeschreibung
-canRate ist eine Webanwendung zur Bewertung von Cannabis-Produkten. Die Plattform ermöglicht es Benutzern, verschiedene Cannabis-Produkte zu entdecken, zu bewerten und Bewertungen anderer Benutzer einzusehen. Die Anwendung bietet auch Informationen über Cannabis-Produzenten.
+canRate ist eine Webanwendung zur Bewertung von Produkten. Die Plattform ermöglicht es Benutzern, verschiedene Produkte zu entdecken, zu bewerten und Bewertungen anderer Benutzer einzusehen. Die Anwendung bietet auch Informationen über Produzenten.
 
 ## Technologien
 - **PHP 8.2+**
